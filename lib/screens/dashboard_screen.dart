@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/sample_expenses.dart';
 import '../models/expense.dart';
+import '../utils/format.dart';
 import '../widgets/expense_card.dart';
 import '../widgets/total_spending_card.dart';
 import 'add_expense_screen.dart';
@@ -24,6 +25,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
       total += expense.amount;
     }
     return total;
+  }
+
+  Map<ExpenseCategory, double> get _categoryTotals {
+    final totals = <ExpenseCategory, double>{};
+    for (final expense in _expenses) {
+      totals[expense.category] =
+          (totals[expense.category] ?? 0) + expense.amount;
+    }
+    return totals;
   }
 
   @override
@@ -50,6 +60,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           TotalSpendingCard(total: _totalSpending),
+          const SizedBox(height: 24),
+          const Text(
+            'By category',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 12),
+          for (final entry in _categoryTotals.entries)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                children: [
+                  Expanded(child: Text(entry.key.label)),
+                  Text(formatCurrency(entry.value)),
+                ],
+              ),
+            ),
           const SizedBox(height: 24),
           const Text(
             'Recent expenses',
