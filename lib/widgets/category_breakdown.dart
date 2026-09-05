@@ -12,6 +12,13 @@ class CategoryBreakdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final entries =
+        totals.entries.where((entry) => entry.value > 0).toList();
+
+    if (entries.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -20,7 +27,7 @@ class CategoryBreakdown extends StatelessWidget {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
-        for (final entry in totals.entries)
+        for (final entry in entries)
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
