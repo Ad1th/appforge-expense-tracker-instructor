@@ -12,6 +12,8 @@ class CategoryBreakdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     final entries =
         totals.entries.where((entry) => entry.value > 0).toList();
 
@@ -29,11 +31,16 @@ class CategoryBreakdown extends StatelessWidget {
         const SizedBox(height: 12),
         for (final entry in entries)
           Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.only(bottom: 10),
             child: Row(
               children: [
+                Icon(entry.key.icon, size: 20, color: colors.primary),
+                const SizedBox(width: 10),
                 Expanded(child: Text(entry.key.label)),
-                Text(formatCurrency(entry.value)),
+                Text(
+                  formatCurrency(entry.value),
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
               ],
             ),
           ),
