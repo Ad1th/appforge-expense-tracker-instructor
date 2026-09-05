@@ -42,7 +42,9 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   }
 
   void _submit() {
-    // Validation and saving come next.
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
   }
 
   @override
@@ -61,6 +63,12 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   labelText: 'Description',
                   border: OutlineInputBorder(),
                 ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Please enter a description';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               TextFormField(
@@ -72,6 +80,13 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   prefixText: '\$ ',
                   border: OutlineInputBorder(),
                 ),
+                validator: (value) {
+                  final amount = double.tryParse(value ?? '');
+                  if (amount == null || amount <= 0) {
+                    return 'Please enter a valid amount';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<ExpenseCategory>(
