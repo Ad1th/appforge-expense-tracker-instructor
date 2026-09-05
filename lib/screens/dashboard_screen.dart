@@ -42,6 +42,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
     });
   }
 
+  void _deleteExpense(Expense expense) {
+    setState(() {
+      _expenses.remove(expense);
+    });
+  }
+
   Future<void> _openAddExpenseScreen() async {
     final newExpense = await Navigator.of(context).push<Expense>(
       MaterialPageRoute(builder: (context) => const AddExpenseScreen()),
@@ -81,7 +87,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           for (final expense in _expenses)
             ExpenseCard(
               expense: expense,
-              onDelete: () {},
+              onDelete: () => _deleteExpense(expense),
             ),
         ],
       ),
