@@ -41,6 +41,10 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     }
   }
 
+  void _submit() {
+    // Validation and saving come next.
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,6 +106,14 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     child: const Text('Change'),
                   ),
                 ],
+              ),
+              const SizedBox(height: 24),
+              FilledButton(
+                onPressed: _submit,
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                  child: Text('Save Expense'),
+                ),
               ),
             ],
           ),
