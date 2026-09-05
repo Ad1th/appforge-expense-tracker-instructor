@@ -1,6 +1,24 @@
 /// The kinds of expense the app understands.
 enum ExpenseCategory { food, transport, shopping, bills, other }
 
+/// Human-friendly text for each [ExpenseCategory].
+extension ExpenseCategoryInfo on ExpenseCategory {
+  String get label {
+    switch (this) {
+      case ExpenseCategory.food:
+        return 'Food';
+      case ExpenseCategory.transport:
+        return 'Transport';
+      case ExpenseCategory.shopping:
+        return 'Shopping';
+      case ExpenseCategory.bills:
+        return 'Bills';
+      case ExpenseCategory.other:
+        return 'Other';
+    }
+  }
+}
+
 /// A single expense the user has recorded.
 class Expense {
   Expense({
