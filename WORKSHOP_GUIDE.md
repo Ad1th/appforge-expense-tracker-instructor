@@ -103,8 +103,7 @@ Point out the icons and spacing refinements.
 | 31 | `where`, `SizedBox.shrink` | `CategoryBreakdown` filters to `value > 0` and renders nothing when empty | `iterable.where((x) => ...)` filters. `SizedBox.shrink()` = "draw nothing". |
 | 32 | Visual detail | Icons + tighter spacing in the breakdown rows | Small `Icon` + `SizedBox`; behaviour unchanged. |
 | 33 | Visual detail | Subtle border on `ExpenseCard` | One line in `BoxDecoration`. Polish belongs in its own commit, never mixed with logic. |
-| 34 | Widget test | `test/widget_test.dart` checks the three section labels render | `tester.pumpWidget`, `find.text`, `expect(..., findsOneWidget)`. |
-| 35 | Docs | README note about the finished app | Housekeeping. |
+| 34 | Widget test | `test/widget_test.dart` checks the three section labels render | `tester.pumpWidget`, `find.text`, `expect(..., findsOneWidget)`. This commit is tagged `checkpoint-06-final-ui`. |
 
 ---
 

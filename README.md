@@ -132,7 +132,6 @@ form input, `setState` to add/remove from a `List`, callback parameters
 - `style: add icons and spacing to the category breakdown`
 - `style: refine the expense card appearance`
 - `test: check the dashboard renders its sections`
-- `docs: note the finished app in the README`
 
 Concepts: conditional widgets (`if`/`else` in a child list), empty states,
 `SizedBox.shrink`, `where` on an iterable, small visual refinements, a basic
