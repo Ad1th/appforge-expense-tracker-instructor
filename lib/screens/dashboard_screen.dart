@@ -36,6 +36,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return totals;
   }
 
+  void _addExpense(Expense expense) {
+    setState(() {
+      _expenses.insert(0, expense);
+    });
+  }
+
+  Future<void> _openAddExpenseScreen() async {
+    final newExpense = await Navigator.of(context).push<Expense>(
+      MaterialPageRoute(builder: (context) => const AddExpenseScreen()),
+    );
+
+    if (newExpense != null) {
+      _addExpense(newExpense);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,13 +62,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const AddExpenseScreen(),
-            ),
-          );
-        },
+        onPressed: _openAddExpenseScreen,
         icon: const Icon(Icons.add),
         label: const Text('Add'),
       ),
