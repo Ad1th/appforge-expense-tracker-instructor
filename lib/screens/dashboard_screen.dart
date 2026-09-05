@@ -84,11 +84,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
-          for (final expense in _expenses)
-            ExpenseCard(
-              expense: expense,
-              onDelete: () => _deleteExpense(expense),
-            ),
+          if (_expenses.isEmpty)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 40),
+              child: Center(
+                child: Text(
+                  'No expenses yet.\nTap "Add" to record your first one.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+            )
+          else
+            for (final expense in _expenses)
+              ExpenseCard(
+                expense: expense,
+                onDelete: () => _deleteExpense(expense),
+              ),
         ],
       ),
     );
