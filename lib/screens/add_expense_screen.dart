@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 
-/// A screen with a form for adding a new expense.
-///
-/// During the workshop you will add:
-///
-///   * a description text field
-///   * an amount text field
-///   * a category selector
-///   * a date picker
-///   * validation
-///   * a "Save" button that returns the new expense to the dashboard
-///
-/// It will need to become a [StatefulWidget] so it can remember what the
-/// user has typed.
-class AddExpenseScreen extends StatelessWidget {
+/// A form for adding a new expense.
+class AddExpenseScreen extends StatefulWidget {
   const AddExpenseScreen({super.key});
+
+  @override
+  State<AddExpenseScreen> createState() => _AddExpenseScreenState();
+}
+
+class _AddExpenseScreenState extends State<AddExpenseScreen> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Add Expense')),
-      body: const Center(
-        // TODO(workshop): Build the "add expense" form here.
-        child: Text('The add-expense form will go here'),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: const [
+              Text('Form fields will go here'),
+            ],
+          ),
+        ),
       ),
     );
   }
