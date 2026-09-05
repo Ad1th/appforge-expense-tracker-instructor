@@ -51,7 +51,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         children: [
           TotalSpendingCard(total: _totalSpending),
           const SizedBox(height: 24),
-          ExpenseCard(expense: _expenses.first),
+          for (final expense in _expenses)
+            ExpenseCard(expense: expense),
         ],
       ),
     );
