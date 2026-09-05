@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
 /// The kinds of expense the app understands.
 enum ExpenseCategory { food, transport, shopping, bills, other }
 
-/// Human-friendly text for each [ExpenseCategory].
+/// Human-friendly text and an icon for each [ExpenseCategory].
 extension ExpenseCategoryInfo on ExpenseCategory {
   String get label {
     switch (this) {
@@ -15,6 +17,21 @@ extension ExpenseCategoryInfo on ExpenseCategory {
         return 'Bills';
       case ExpenseCategory.other:
         return 'Other';
+    }
+  }
+
+  IconData get icon {
+    switch (this) {
+      case ExpenseCategory.food:
+        return Icons.restaurant;
+      case ExpenseCategory.transport:
+        return Icons.directions_bus;
+      case ExpenseCategory.shopping:
+        return Icons.shopping_bag;
+      case ExpenseCategory.bills:
+        return Icons.receipt_long;
+      case ExpenseCategory.other:
+        return Icons.category;
     }
   }
 }
