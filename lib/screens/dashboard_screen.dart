@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../data/sample_expenses.dart';
+import '../models/expense.dart';
 import 'add_expense_screen.dart';
 
 /// The home screen. Holds the list of expenses and shows a spending
@@ -12,6 +14,8 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  final List<Expense> _expenses = [...sampleExpenses];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +36,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: const Icon(Icons.add),
         label: const Text('Add'),
       ),
-      body: const Center(
-        child: Text('Your dashboard will go here'),
+      body: Center(
+        child: Text('${_expenses.length} expenses recorded'),
       ),
     );
   }
