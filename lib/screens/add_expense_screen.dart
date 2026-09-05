@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/expense.dart';
+
 /// A form for adding a new expense.
 class AddExpenseScreen extends StatefulWidget {
   const AddExpenseScreen({super.key});
@@ -12,6 +14,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+
+  ExpenseCategory _selectedCategory = ExpenseCategory.food;
 
   @override
   void dispose() {
@@ -47,6 +51,28 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   prefixText: '\$ ',
                   border: OutlineInputBorder(),
                 ),
+              ),
+              const SizedBox(height: 16),
+              DropdownButtonFormField<ExpenseCategory>(
+                value: _selectedCategory,
+                decoration: const InputDecoration(
+                  labelText: 'Category',
+                  border: OutlineInputBorder(),
+                ),
+                items: [
+                  for (final category in ExpenseCategory.values)
+                    DropdownMenuItem(
+                      value: category,
+                      child: Text(category.label),
+                    ),
+                ],
+                onChanged: (value) {
+                  if (value != null) {
+                    setState(() {
+                      _selectedCategory = value;
+                    });
+                  }
+                },
               ),
             ],
           ),
