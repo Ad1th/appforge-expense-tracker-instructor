@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/sample_expenses.dart';
 import '../models/expense.dart';
-import '../utils/format.dart';
+import '../widgets/total_spending_card.dart';
 import 'add_expense_screen.dart';
 
 /// The home screen. Holds the list of expenses and shows a spending
@@ -48,10 +48,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Text(
-            'Total: ${formatCurrency(_totalSpending)}',
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
+          TotalSpendingCard(total: _totalSpending),
         ],
       ),
     );
