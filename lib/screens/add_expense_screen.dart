@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/expense.dart';
+import '../utils/format.dart';
 
 /// A form for adding a new expense.
 class AddExpenseScreen extends StatefulWidget {
@@ -16,12 +17,28 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   final _amountController = TextEditingController();
 
   ExpenseCategory _selectedCategory = ExpenseCategory.food;
+  DateTime _selectedDate = DateTime.now();
 
   @override
   void dispose() {
     _titleController.dispose();
     _amountController.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickDate() async {
+    final now = DateTime.now();
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(now.year - 1),
+      lastDate: now,
+    );
+    if (picked != null) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
   }
 
   @override
@@ -73,6 +90,18 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     });
                   }
                 },
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text('Date: ${formatShortDate(_selectedDate)}'),
+                  ),
+                  TextButton(
+                    onPressed: _pickDate,
+                    child: const Text('Change'),
+                  ),
+                ],
               ),
             ],
           ),
