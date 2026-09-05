@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/sample_expenses.dart';
 import '../models/expense.dart';
+import '../widgets/expense_card.dart';
 import '../widgets/total_spending_card.dart';
 import 'add_expense_screen.dart';
 
@@ -49,6 +50,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           TotalSpendingCard(total: _totalSpending),
+          const SizedBox(height: 24),
+          ExpenseCard(expense: _expenses.first),
         ],
       ),
     );
