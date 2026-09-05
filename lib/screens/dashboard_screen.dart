@@ -36,8 +36,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: const Icon(Icons.add),
         label: const Text('Add'),
       ),
-      body: Center(
-        child: Text('${_expenses.length} expenses recorded'),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          Text('${_expenses.length} expenses recorded'),
+        ],
       ),
     );
   }
