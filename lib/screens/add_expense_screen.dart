@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../models/expense.dart';
 import '../utils/format.dart';
 
-/// A form for adding a new expense.
+/// A form for adding a new expense. When the user taps "Save" it
+/// returns the new [Expense] to the previous screen.
 class AddExpenseScreen extends StatefulWidget {
   const AddExpenseScreen({super.key});
 
@@ -45,6 +46,15 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
+
+    final newExpense = Expense(
+      title: _titleController.text.trim(),
+      amount: double.parse(_amountController.text),
+      category: _selectedCategory,
+      date: _selectedDate,
+    );
+
+    Navigator.of(context).pop(newExpense);
   }
 
   @override
