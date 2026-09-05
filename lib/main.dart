@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screens/dashboard_screen.dart';
+import 'theme.dart';
 
 void main() {
   runApp(const ExpenseTrackerApp());
@@ -17,7 +18,7 @@ class ExpenseTrackerApp extends StatelessWidget {
     return MaterialApp(
       title: 'AppForge Expenses',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
+      theme: appTheme,
       home: const DashboardScreen(),
     );
   }
