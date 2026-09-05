@@ -79,7 +79,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           const SizedBox(height: 12),
           for (final expense in _expenses)
-            ExpenseCard(expense: expense),
+            ExpenseCard(
+              expense: expense,
+              onDelete: () {},
+            ),
         ],
       ),
     );

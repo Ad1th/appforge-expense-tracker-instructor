@@ -5,9 +5,14 @@ import '../utils/format.dart';
 
 /// One row in the list of recent expenses.
 class ExpenseCard extends StatelessWidget {
-  const ExpenseCard({super.key, required this.expense});
+  const ExpenseCard({
+    super.key,
+    required this.expense,
+    required this.onDelete,
+  });
 
   final Expense expense;
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +54,11 @@ class ExpenseCard extends StatelessWidget {
           Text(
             formatCurrency(expense.amount),
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          IconButton(
+            icon: const Icon(Icons.close, size: 18),
+            color: Colors.grey,
+            onPressed: onDelete,
           ),
         ],
       ),
